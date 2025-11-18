@@ -24,9 +24,9 @@
 
 ## 3. Data-ingest script
 
-- [ ] Create a CLI entry point (`scripts/add-check-in.ts`) runnable via `tsx` that accepts args (`--when`, `--now`, `--focus`, `--soul`, `--prep`) and inserts into `check_ins`.
-- [ ] Validate focus values (`rhyt|hyker|other`), and default `--when` to current time.
-- [ ] Add convenience commands in `package.json` (`"checkins:add": "tsx scripts/add-check-in.ts"`).
+- [x] Create a CLI entry point (`scripts/add-check-in.ts`) runnable via `tsx` that accepts args (`--when`, `--now`, `--focus`, `--soul`, `--prep`) and inserts into `check_ins`.
+- [x] Validate focus values (`rhyt|hyker|other`), and default `--when` to current time.
+- [x] Add convenience commands in `package.json` (`"checkins:add": "tsx scripts/add-check-in.ts"`).
 
 ## 4. SolidStart server routes
 

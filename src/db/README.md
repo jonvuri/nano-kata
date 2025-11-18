@@ -42,4 +42,3 @@ A perfect day (density 1.0) has at least one check-in in each waking cycle (6-E)
 
 The streak counts consecutive days (going backwards from today) with density 1.0.
 The streak breaks when a day with density < 1.0 is encountered.
-
