@@ -30,12 +30,12 @@
 
 ## 4. SolidStart server routes
 
-- [ ] Expose a server data loader in `src/routes/index.tsx` that fetches:
+- [x] Expose a server data loader in `src/routes/index.tsx` that fetches:
   - today's check-ins
   - daily density value
   - streak metadata
   - metadata for every cycle `0-F` indicating past/future/checked status, computed from current time plus check-in timestamps
-- [ ] Implement shared utilities (e.g. `getTodayCycles()` and `classNames` helpers) in `src/lib/`.
+- [x] Implement shared utilities (e.g. `getTodayCycles()` and `classNames` helpers) in `src/lib/`.
 
 ## 5. UI layout requirements
 
