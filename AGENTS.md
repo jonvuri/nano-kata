@@ -45,7 +45,9 @@ check these tasks after every major change:
 
 - just a single page for now, with three sections:
   - a section showing the day's cycles as a line of squares, shaded dark if the cycle is still in the future, medium dark if the cycle is in the past, and lime green if the cycle contains a check-in
-  - a section just to the right of the cycle visualization, displaying the current daily density, considering all of the day's waking cycles including those in the future
+  - a section just to the right of the cycle visualization, displaying these values in large type:
+    - the current daily density, considering all of the day's waking cycles including those in the future
+    - the current streak of 1.0-density days
   - a section below both of those showing the check-ins in tabular format, most recent first
 
 ## check-in schema
