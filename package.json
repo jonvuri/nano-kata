@@ -2,6 +2,9 @@
   "name": "nano-kata",
   "type": "module",
   "scripts": {
+    "format": "prettier src --write",
+    "lint": "eslint --fix --cache",
+    "typecheck": "tsc",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
@@ -9,10 +12,23 @@
   },
   "dependencies": {
     "@solidjs/meta": "^0.29.4",
-    "@solidjs/router": "^0.15.0",
-    "@solidjs/start": "^1.1.0",
-    "solid-js": "^1.9.5",
-    "vinxi": "^0.5.7"
+    "@solidjs/router": "^0.15.4",
+    "@solidjs/start": "^1.2.0",
+    "solid-js": "^1.9.10",
+    "vinxi": "^0.5.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-solid": "^0.14.5",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.47.0"
   },
   "engines": {
     "node": ">=22"
