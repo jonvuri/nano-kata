@@ -15,9 +15,9 @@
 
 ## 2. Type generation & data access
 
-- [ ] Configure `kysely-codegen` to point at the local SQLite DB and output generated types (e.g. `src/db/generated.ts`).
-- [ ] Create a typed `Database` wrapper (`src/db/client.ts`) that instantiates Kysely with the sqlite dialect and re-exports helper queries.
-- [ ] Define repository helpers for commonly needed reads:
+- [x] Configure `kysely-codegen` to point at the local SQLite DB and output generated types (e.g. `src/db/generated.ts`).
+- [x] Create a typed `Database` wrapper (`src/db/client.ts`) that instantiates Kysely with the sqlite dialect and re-exports helper queries.
+- [x] Define repository helpers for commonly needed reads:
   - fetch all check-ins for a given day ordered desc
   - compute per-day density (count of waking cycles with check-ins / total waking cycles) by grouping timestamps into fixed cycles
   - compute current streak by scanning previous days with density 1.0
