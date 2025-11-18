@@ -1,12 +1,15 @@
 # development practices
 
+## formatting
+
+format files after every change with: `npm run format`
+
 ## static analysis and tests
 
 check these tasks after every major change:
 
 - static types (Typescript): `npm run typecheck`
 - linter (ESLint): `npm run lint`
-- tests (Vitest): `npm run test:run`
 
 # project plan
 
