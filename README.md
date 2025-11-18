@@ -2,21 +2,54 @@
 
 simple, focused tracking of kata cycles
 
-## seveloping
+## prerequisites
 
-install dependencies with `pnpm install` or `yarn`, then start a development server:
+- Node.js `v24.11.1` (`nvm use` will pick this up from `.nvmrc`)
+- pnpm (managed via Corepack)
+- SQLite (the project creates `kata.sqlite` at the repo root)
+
+Install dependencies with:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
 ```
+
+## development
+
+```bash
+pnpm dev
+```
+
+The dashboard surface is still in progress, but the tooling and database stack are ready for the follow-up tasks in `TODO.md`.
+
+## mandatory checks
+
+All changes must pass the following commands locally before pushing. A pre-push hook (managed by `simple-git-hooks`) runs them automatically, but you can run them manually any time:
+
+```bash
+pnpm lint        # ESLint (no --fix to keep hooks fast + deterministic)
+pnpm typecheck   # strict TS compile (no emit)
+pnpm test:run    # Vitest suites (coming in later steps)
+```
+
+Formatting: run `pnpm format` after making edits. It runs Prettier across the repo to keep markdown, config, and source files consistent.
+
+## database utilities
+
+The local SQLite database lives at `kata.sqlite`. Use the Kysely CLI for migrations:
+
+```bash
+# apply latest migrations locally
+pnpm db:migrate
+```
+
+Helper scripts for ingesting data will arrive in later steps; for now, the schema and migrator are in place (see `kysely.config.ts` and the `migrations/` folder).
 
 ## building
 
-Solid apps are built with _presets_, which optimise your project for deployment to different environments.
+```bash
+pnpm build
+pnpm start
+```
 
-by default, `npm run build` will generate a Node app that you can run with `npm start`. to use a different preset, add it to the `devDependencies` in `package.json` and specify in your `app.config.js`.
-
-## this project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+Solid apps are built with presets (see `app.config.ts`). The default target is a Node runtime via Vinxi; other targets can be added later if needed.

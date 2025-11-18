@@ -2,17 +2,16 @@
 
 ## 0. Repository hygiene & tooling
 
-- [ ] Remove leftover scaffold components/routes that are outside the kata scope (`src/routes/about.tsx`, `src/components/Counter.*`, etc.).
-- [ ] Configure shared env vars (SQLite path, SolidStart server secrets) via `.env` and load them with `@solidjs/start/env`.
-- [ ] Document mandatory checks (`npm run typecheck`, `npm run lint`, `npm run test:run`) in `README.md` and set up a pre-push script or Git hook to run them.
+- [x] Remove leftover scaffold components/routes that are outside the kata scope (`src/routes/about.tsx`, `src/components/Counter.*`, etc.).
+- [x] Document mandatory checks (`npm run typecheck`, `npm run lint`, `npm run test:run`) in `README.md` and set up a pre-push script or Git hook to run them.
 
 ## 1. Database + migrations
 
-- [ ] Decide on SQLite file location (e.g. `/Users/jonvuri/Development/nano-kata/kata.sqlite`) and add it to `.gitignore`.
-- [ ] Initialize `kysely-ctl` (config file + migrations folder) targeting the SQLite database with the sqlite-dialect driver.
-- [ ] Write an initial migration that creates a minimalist `check_ins` table with columns: `id`, `checked_at` (datetime), `now`, `focus` (`rhyt|hyker|other`), `soul`, `prep`, and timestamps; cycle data stays derived at runtime.
-- [ ] Seed the migration folder with future-proof helpers (e.g. `helpers.ts` exporting column builders) to keep schema changes consistent.
-- [ ] Run migrations locally and add a sanity check script (`npm run db:migrate`) to the package scripts.
+- [x] Decide on SQLite file location (e.g. `/Users/jonvuri/Development/nano-kata/kata.sqlite`) and add it to `.gitignore`.
+- [x] Initialize `kysely-ctl` (config file + migrations folder) targeting the SQLite database with the sqlite-dialect driver.
+- [x] Write an initial migration that creates a minimalist `check_ins` table with columns: `id`, `checked_at` (datetime), `now`, `focus` (`rhyt|hyker|other`), `soul`, `prep`, and timestamps; cycle data stays derived at runtime.
+- [x] Seed the migration folder with future-proof helpers (e.g. `helpers.ts` exporting column builders) to keep schema changes consistent.
+- [x] Run migrations locally and add a sanity check script (`npm run db:migrate`) to the package scripts.
 
 ## 2. Type generation & data access
 

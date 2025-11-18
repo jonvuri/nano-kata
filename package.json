@@ -3,22 +3,29 @@
   "type": "module",
   "scripts": {
     "format": "prettier src --write",
-    "lint": "eslint --fix --cache",
-    "typecheck": "tsc",
+    "lint": "eslint --cache",
+    "lint:fix": "eslint --fix --cache",
+    "typecheck": "tsc --noEmit",
+    "test:run": "vitest run",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "version": "vinxi version"
+    "version": "vinxi version",
+    "db:migrate": "kysely migrate latest",
+    "postinstall": "simple-git-hooks"
   },
   "dependencies": {
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.4",
     "@solidjs/start": "^1.2.0",
+    "better-sqlite3": "^12.4.1",
+    "kysely": "^0.28.8",
     "solid-js": "^1.9.10",
     "vinxi": "^0.5.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^24.10.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -26,11 +33,23 @@
     "eslint-plugin-import-x": "^4.16.1",
     "eslint-plugin-solid": "^0.14.5",
     "globals": "^16.5.0",
+    "kysely-ctl": "^0.19.0",
     "prettier": "^3.6.2",
+    "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0"
+    "typescript-eslint": "^8.47.0",
+    "vitest": "^4.0.10"
   },
   "engines": {
     "node": ">=22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "simple-git-hooks"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-push": "pnpm lint && pnpm typecheck && pnpm test:run"
   }
 }
