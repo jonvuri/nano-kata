@@ -48,22 +48,22 @@
 
 ## 6. State management & interactions
 
-- [ ] Use Solid signals/resources to hydrate data from the loader; avoid client-side fetch duplication.
-- [ ] Provide simple interaction affordances (e.g. hover tooltips per cycle, clickable row expansions for long notes) while keeping read-only scope.
+- [x] Use Solid signals/resources to hydrate data from the loader; avoid client-side fetch duplication.
 
 ## 7. Metrics logic
 
-- [ ] Implement utility to map timestamps to cycle hex indexes and determine waking cycles (6–E) on the fly, no persistence.
-- [ ] Calculate density as `wakingCyclesWithCheckIns / 9` (since cycles 6–E inclusive) and round to two decimals.
-- [ ] Compute streak by checking previous days (descending) until a day with density < 1.0 is hit.
+- [x] Implement utility to map timestamps to cycle hex indexes and determine waking cycles (6–E) on the fly, no persistence.
+- [x] Calculate density as `wakingCyclesWithCheckIns / 9` (since cycles 6–E inclusive) and round to two decimals.
+- [x] Compute streak by checking previous days (descending) until a day with density < 1.0 is hit.
 
 ## 8. Testing & QA
 
 - [ ] Add Vitest suites for utilities (cycle math, density, streak).
 - [ ] Write integration tests (or e2e with Playwright) for the page loader to ensure DB queries wire correctly.
-- [ ] Configure CI to run `npm run typecheck`, `npm run lint`, `npm run test:run` on pushes/PRs.
 
 ## 9. Future-friendly enhancements
 
 - [ ] Abstract visualization primitives so the future hexagon/point-grid upgrade only swaps the renderer.
+- [ ] Show the earliest check-in time for each cycle (if any).
 - [ ] Capture design debt + UX wishlist (filters, editing, multi-day view) in `README.md`.
+- [ ] Add manual inputs with a dialog-based form for entering a new check-in.
