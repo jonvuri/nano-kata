@@ -14,10 +14,10 @@ export function CycleStrip(props: CycleStripProps) {
         {(cycle) => (
           <div
             role="listitem"
-            aria-label={`Cycle ${cycle.hex}: ${cycle.state}${cycle.isWaking ? ', waking cycle' : ''}`}
-            title={`Cycle ${cycle.hex} (${cycle.state}${cycle.isWaking ? ', waking' : ', non-waking'})`}
+            aria-label={`Cycle ${cycle.hex}: ${cycle.state}${cycle.isWaking ? ', waking cycle' : ''}${cycle.earliestCheckInTime ? `, checked in at ${cycle.earliestCheckInTime}` : ''}`}
+            title={`Cycle ${cycle.hex} (${cycle.state}${cycle.isWaking ? ', waking' : ', non-waking'})${cycle.earliestCheckInTime ? `\nChecked in at ${cycle.earliestCheckInTime}` : ''}`}
             class={classNames(
-              'h-12 w-12 flex-shrink-0 rounded transition-colors',
+              'h-12 w-12 flex-shrink-0 rounded transition-colors flex items-center justify-center text-xs font-mono',
               cycle.state === 'future' && 'cycle-future',
               cycle.state === 'past' && 'cycle-past',
               cycle.state === 'checked' && 'cycle-checked',
@@ -25,9 +25,13 @@ export function CycleStrip(props: CycleStripProps) {
               !cycle.isWaking && 'opacity-40',
             )}
           >
+            {cycle.earliestCheckInTime && (
+              <span class="text-black font-semibold">{cycle.earliestCheckInTime}</span>
+            )}
             <span class="sr-only">
               Cycle {cycle.hex}: {cycle.state}
               {cycle.isWaking ? ', waking cycle' : ''}
+              {cycle.earliestCheckInTime ? `, checked in at ${cycle.earliestCheckInTime}` : ''}
             </span>
           </div>
         )}

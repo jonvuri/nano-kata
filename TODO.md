@@ -56,14 +56,7 @@
 - [x] Calculate density as `wakingCyclesWithCheckIns / 9` (since cycles 6–E inclusive) and round to two decimals.
 - [x] Compute streak by checking previous days (descending) until a day with density < 1.0 is hit.
 
-## 8. Testing & QA
+## 8. Enhancements
 
-- [ ] Add Vitest suites for utilities (cycle math, density, streak).
-- [ ] Write integration tests (or e2e with Playwright) for the page loader to ensure DB queries wire correctly.
-
-## 9. Future-friendly enhancements
-
-- [ ] Abstract visualization primitives so the future hexagon/point-grid upgrade only swaps the renderer.
-- [ ] Show the earliest check-in time for each cycle (if any).
-- [ ] Capture design debt + UX wishlist (filters, editing, multi-day view) in `README.md`.
+- [x] Show the earliest check-in time for each cycle (if any).
 - [ ] Add manual inputs with a dialog-based form for entering a new check-in.
