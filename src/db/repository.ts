@@ -23,11 +23,14 @@ export interface DayDensity {
 
 /**
  * Fetch all check-ins for a given day, ordered by checked_at descending (most recent first).
+ * The date parameter represents the start of the day boundary.
+ * This function computes the end of day from the start.
  */
 export async function getCheckInsForDay(date: Date): Promise<CheckIn[]> {
   const db = getDb()
-  const startOfDay = getStartOfDay(date)
-  const endOfDay = getEndOfDay(date)
+  const startOfDay = date
+  // Add 24 hours minus 1ms to get the end of the day
+  const endOfDay = new Date(date.getTime() + 24 * 60 * 60 * 1000 - 1)
 
   const checkIns = await db
     .selectFrom('check_ins')

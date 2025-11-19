@@ -39,12 +39,12 @@
 
 ## 5. UI layout requirements
 
-- [ ] Replace the starter page with a single dashboard composed of:
+- [x] Replace the starter page with a single dashboard composed of:
   - **Cycle strip**: 16 squares aligned horizontally; state colors → future (dark), past (medium), checked (lime) derived purely from current time and in-memory check-ins.
   - **Value panel**: to the right of the strip, large numeric display showing (a) today's density (0.0–1.0) across all waking cycles, including future ones in the same day, and (b) the current streak of 1.0-density days.
   - **Check-in table**: below the top row, list entries newest first; include `checked_at`, `cycle hex` (derived), `now`, `focus`, `soul`, `prep`.
-- [ ] Ensure the layout remains responsive (stack vertically on small widths) and uses app-wide CSS tokens defined in `src/app.css`.
-- [ ] Consider accessibility: text contrast for dark backgrounds, focus styles, aria labels for color-only states.
+- [x] Ensure the layout remains responsive (stack vertically on small widths) and uses app-wide CSS tokens defined in `src/app.css`.
+- [x] Consider accessibility: text contrast for dark backgrounds, focus styles, aria labels for color-only states.
 
 ## 6. State management & interactions
 

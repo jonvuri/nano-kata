@@ -1,40 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Color tokens */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #0f172a;
+  --color-bg-tertiary: #1e293b;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-accent-lime: #bef264;
+  --color-border: #334155;
+
+  /* Cycle state colors */
+  --color-cycle-future: #1e293b;
+  --color-cycle-past: #334155;
+  --color-cycle-checked: #bef264;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+}
+
 body {
   font-family:
-    Gordita, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  margin-right: 1rem;
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-lime);
+  outline-offset: 2px;
 }
 
-main {
-  text-align: center;
-  padding: 1em;
-  margin: 0 auto;
+/* Utility classes for cycle states */
+.cycle-future {
+  background-color: var(--color-cycle-future);
 }
 
-h1 {
-  color: #335d92;
-  text-transform: uppercase;
-  font-size: 4rem;
-  font-weight: 100;
-  line-height: 1.1;
-  margin: 4rem auto;
-  max-width: 14rem;
+.cycle-past {
+  background-color: var(--color-cycle-past);
 }
 
-p {
-  max-width: 14rem;
-  margin: 2rem auto;
-  line-height: 1.35;
-}
-
-@media (min-width: 480px) {
-  h1 {
-    max-width: none;
-  }
-
-  p {
-    max-width: none;
-  }
+.cycle-checked {
+  background-color: var(--color-cycle-checked);
 }

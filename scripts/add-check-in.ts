@@ -88,21 +88,8 @@ async function addCheckIn(args: CheckInArgs) {
   const db = getDb()
 
   try {
-    // Build the insert query
-    const insertData: {
-      now: string
-      focus: string
-      soul: string
-      prep: string
-      checked_at?: string
-    } = {
-      now: args.now,
-      focus: args.focus,
-      soul: args.soul,
-      prep: args.prep,
-    }
-
-    // If --when is provided, use it; otherwise let DB use CURRENT_TIMESTAMP
+    // Determine the timestamp to use
+    let checkedAt: string
     if (args.when) {
       // Validate that it's a valid ISO date
       const date = new Date(args.when)
@@ -110,14 +97,26 @@ async function addCheckIn(args: CheckInArgs) {
         console.error(`Error: --when must be a valid ISO datetime string. Got: ${args.when}`)
         process.exit(1)
       }
-      insertData.checked_at = date.toISOString()
+      checkedAt = date.toISOString()
+    } else {
+      // Use current time in ISO format (not SQLite's CURRENT_TIMESTAMP)
+      checkedAt = new Date().toISOString()
+    }
+
+    // Build the insert query - always include checked_at explicitly
+    const insertData = {
+      now: args.now,
+      focus: args.focus,
+      soul: args.soul,
+      prep: args.prep,
+      checked_at: checkedAt,
     }
 
     const result = await db.insertInto('check_ins').values(insertData).executeTakeFirst()
 
     console.log('✓ Check-in added successfully!')
     console.log(`  ID: ${result.insertId}`)
-    console.log(`  Checked at: ${insertData.checked_at || 'current time'}`)
+    console.log(`  Checked at: ${checkedAt}`)
     console.log(`  Now: ${args.now}`)
     console.log(`  Focus: ${args.focus}`)
     console.log(`  Soul: ${args.soul}`)
