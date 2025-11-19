@@ -1,4 +1,3 @@
-import { Title } from '@solidjs/meta'
 import { createAsync, cache } from '@solidjs/router'
 
 import { getDb } from '../db/client'
@@ -136,22 +135,7 @@ export default function Home() {
 
   return (
     <main class="min-h-screen bg-black text-slate-100">
-      <Title>Nano Kata</Title>
       <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Header */}
-        <header class="mb-8">
-          <p class="text-sm uppercase tracking-[0.3em] text-lime-300">Nano Kata</p>
-          <h1 class="text-3xl font-semibold sm:text-4xl">Dashboard</h1>
-        </header>
-
-        {/* Show loading state while data is being fetched */}
-        {!data() && (
-          <div class="flex items-center justify-center py-16">
-            <p class="text-base text-slate-300">Loading dashboard data...</p>
-          </div>
-        )}
-
-        {/* Show dashboard once loaded */}
         {data() && (
           <div class="space-y-8">
             {/* Top row: Cycle strip and stats panel */}
