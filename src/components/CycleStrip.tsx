@@ -1,41 +1,75 @@
-import { For } from 'solid-js'
+import { For, onMount, onCleanup } from 'solid-js'
 
 import type { CycleMetadata } from '../lib/cycles'
-import { classNames } from '../lib/classNames'
+import { createPointGridRenderer, CYCLE_CONFIGS } from '../lib/pointGrid'
 
 interface CycleStripProps {
   cycles: CycleMetadata[]
 }
 
-export function CycleStrip(props: CycleStripProps) {
+interface CycleGridProps {
+  cycle: CycleMetadata
+}
+
+function CycleGrid(props: CycleGridProps) {
+  let canvasRef: HTMLCanvasElement | undefined
+  let animationFrameId: number | undefined
+
+  onMount(() => {
+    if (!canvasRef) return
+
+    // Select config based on cycle state
+    const config = CYCLE_CONFIGS[props.cycle.state]
+    const renderer = createPointGridRenderer(canvasRef, config)
+
+    // Main loop
+    function loop() {
+      renderer.render()
+      animationFrameId = requestAnimationFrame(loop)
+    }
+
+    // Start the animation loop
+    loop()
+  })
+
+  onCleanup(() => {
+    if (animationFrameId !== undefined) {
+      cancelAnimationFrame(animationFrameId)
+    }
+  })
+
   return (
-    <div role="list" aria-label="Daily cycle visualization" class="flex gap-2">
-      <For each={props.cycles}>
-        {(cycle) => (
-          <div
-            role="listitem"
-            aria-label={`Cycle ${cycle.hex}: ${cycle.state}${cycle.isWaking ? ', waking cycle' : ''}${cycle.earliestCheckInTime ? `, checked in at ${cycle.earliestCheckInTime}` : ''}`}
-            title={`Cycle ${cycle.hex} (${cycle.state}${cycle.isWaking ? ', waking' : ', non-waking'})${cycle.earliestCheckInTime ? `\nChecked in at ${cycle.earliestCheckInTime}` : ''}`}
-            class={classNames(
-              'h-12 w-12 flex-shrink-0 rounded transition-colors flex items-center justify-center text-xs font-mono',
-              cycle.state === 'future' && 'cycle-future',
-              cycle.state === 'past' && 'cycle-past',
-              cycle.state === 'checked' && 'cycle-checked',
-              // Add a subtle border for non-waking cycles
-              !cycle.isWaking && 'opacity-40',
-            )}
-          >
-            {cycle.earliestCheckInTime && (
-              <span class="text-black font-semibold">{cycle.earliestCheckInTime}</span>
-            )}
-            <span class="sr-only">
-              Cycle {cycle.hex}: {cycle.state}
-              {cycle.isWaking ? ', waking cycle' : ''}
-              {cycle.earliestCheckInTime ? `, checked in at ${cycle.earliestCheckInTime}` : ''}
-            </span>
-          </div>
-        )}
-      </For>
+    <div
+      role="listitem"
+      aria-label={`Cycle ${props.cycle.hex}: ${props.cycle.state}${props.cycle.isWaking ? ', waking cycle' : ''}${props.cycle.earliestCheckInTime ? `, checked in at ${props.cycle.earliestCheckInTime}` : ''}`}
+      title={`Cycle ${props.cycle.hex} (${props.cycle.state}${props.cycle.isWaking ? ', waking' : ', non-waking'})${props.cycle.earliestCheckInTime ? `\nChecked in at ${props.cycle.earliestCheckInTime}` : ''}`}
+      class="flex flex-col items-center gap-2"
+    >
+      <canvas ref={canvasRef} width="100" height="100" class="rounded" />
+      {props.cycle.earliestCheckInTime && (
+        <div class="text-xs font-mono space-y-0.5 text-center">
+          <div class="text-lime-400 font-semibold">{props.cycle.earliestCheckInTime}</div>
+          <div class="text-slate-400">{props.cycle.hex}</div>
+        </div>
+      )}
+      <span class="sr-only">
+        Cycle {props.cycle.hex}: {props.cycle.state}
+        {props.cycle.isWaking ? ', waking cycle' : ''}
+        {props.cycle.earliestCheckInTime ?
+          `, checked in at ${props.cycle.earliestCheckInTime}`
+        : ''}
+      </span>
+    </div>
+  )
+}
+
+export function CycleStrip(props: CycleStripProps) {
+  // Filter to only show waking cycles
+  const wakingCycles = () => props.cycles.filter((cycle) => cycle.isWaking)
+
+  return (
+    <div role="list" aria-label="Daily cycle visualization" class="flex gap-4">
+      <For each={wakingCycles()}>{(cycle) => <CycleGrid cycle={cycle} />}</For>
     </div>
   )
 }
