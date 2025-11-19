@@ -48,8 +48,8 @@ function CycleGrid(props: CycleGridProps) {
       <canvas ref={canvasRef} width="100" height="100" class="rounded" />
       {props.cycle.earliestCheckInTime && (
         <div class="text-xs font-mono space-y-0.5 text-center">
-          <div class="text-lime-400 font-semibold">{props.cycle.earliestCheckInTime}</div>
-          <div class="text-slate-400">{props.cycle.hex}</div>
+          <div class="text-accent-lime font-semibold">{props.cycle.earliestCheckInTime}</div>
+          <div class="text-text-tertiary">{props.cycle.hex}</div>
         </div>
       )}
       <span class="sr-only">
