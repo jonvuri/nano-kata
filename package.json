@@ -5,7 +5,6 @@
     "format": "prettier src --write",
     "lint": "eslint --fix --cache",
     "typecheck": "tsc --noEmit",
-    "test:run": "vitest run",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
@@ -44,8 +43,7 @@
     "tailwindcss": "^4.1.17",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0",
-    "vitest": "^4.0.10"
+    "typescript-eslint": "^8.47.0"
   },
   "engines": {
     "node": ">=22"
@@ -57,6 +55,6 @@
     ]
   },
   "simple-git-hooks": {
-    "pre-push": "pnpm lint && pnpm typecheck && pnpm test:run"
+    "pre-push": "pnpm lint && pnpm typecheck"
   }
 }

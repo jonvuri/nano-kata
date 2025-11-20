@@ -29,7 +29,6 @@ All changes must pass the following commands locally before pushing. A pre-push 
 ```bash
 pnpm lint        # ESLint (no --fix to keep hooks fast + deterministic)
 pnpm typecheck   # strict TS compile (no emit)
-pnpm test:run    # Vitest suites (coming in later steps)
 ```
 
 Formatting: run `pnpm format` after making edits. It runs Prettier across the repo to keep markdown, config, and source files consistent.
