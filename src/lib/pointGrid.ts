@@ -36,6 +36,8 @@ export function createPointGridRenderer(
   config: PointGridConfig,
   constants: PointGridConstants = DEFAULT_CONSTANTS,
 ) {
+  const randomSeed = Math.floor(Math.random() * 1000000)
+
   const ctx = canvas.getContext('2d')
   if (!ctx) {
     throw new Error('Could not get 2d context from canvas')
@@ -76,9 +78,10 @@ export function createPointGridRenderer(
     //     a = 1;
 
     // lime green
-    const r = Math.round(80 - normalize(v, 70))
-    const g = Math.round(normalize(v, 140) + 100)
-    const b = Math.round(255 - g)
+    // base: 190, 242, 100
+    const r = Math.round(20 + normalize(v, 170))
+    const g = Math.round(normalize(v, 140) + 102)
+    const b = Math.round(100 - normalize(v, 100))
     const a = 1
 
     return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')'
@@ -92,7 +95,7 @@ export function createPointGridRenderer(
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     // Use the current timestamp as a modifier for our calculations
-    const t = config.baseSpeed * Date.now()
+    const t = config.baseSpeed * (Date.now() + randomSeed)
 
     // Iterate the point grid and draw a circle at a specific size, color
     // and offset for each co-ordinate.

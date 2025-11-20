@@ -134,31 +134,31 @@ export default function Home() {
   }
 
   return (
-    <main class="min-h-screen bg-black text-slate-100">
-      <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <main class="min-h-screen bg-black text-neutral-100">
+      <div class="px-4 py-8 sm:px-6 lg:px-8">
         {data() && (
-          <div class="space-y-8">
+          <div class="space-y-24">
             {/* Top row: Cycle strip and stats panel */}
-            <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-              {/* Cycle strip - scrollable on mobile */}
-              <div class="flex-1 overflow-x-auto">
+            <div class="flex flex-row gap-6 lg:items-start justify-between">
+              {/* Stats panel */}
+              <div class="flex-shrink-0 lg:mr-8">
+                <StatsPanel density={density()} streak={streak()} />
+              </div>
+
+              {/* Cycle strip */}
+              <div class="flex-shrink-0 lg:flex-1">
                 <div class="min-w-max">
                   <CycleStrip cycles={cycles()} />
                 </div>
               </div>
-
-              {/* Stats panel */}
-              <div class="flex-shrink-0 lg:ml-8">
-                <StatsPanel density={density()} streak={streak()} />
-              </div>
             </div>
 
             {/* Check-in table */}
-            <section aria-labelledby="checkins-heading">
+            <section aria-labelledby="checkins-heading" class="opacity-75">
               <h2 id="checkins-heading" class="mb-4 text-xl font-semibold">
                 Today's Check-Ins
               </h2>
-              <div class="rounded-lg border border-slate-800 bg-slate-900">
+              <div class="rounded-lg border border-neutral-800 bg-neutral-900">
                 <CheckInTable checkIns={todayCheckIns()} />
               </div>
             </section>

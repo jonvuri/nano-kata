@@ -41,24 +41,22 @@ function CycleGrid(props: CycleGridProps) {
   return (
     <div
       role="listitem"
-      aria-label={`Cycle ${props.cycle.hex}: ${props.cycle.state}${props.cycle.isWaking ? ', waking cycle' : ''}${props.cycle.earliestCheckInTime ? `, checked in at ${props.cycle.earliestCheckInTime}` : ''}`}
       title={`Cycle ${props.cycle.hex} (${props.cycle.state}${props.cycle.isWaking ? ', waking' : ', non-waking'})${props.cycle.earliestCheckInTime ? `\nChecked in at ${props.cycle.earliestCheckInTime}` : ''}`}
-      class="flex flex-col items-center gap-2"
+      class="flex flex-col gap-2"
     >
-      <canvas ref={canvasRef} width="100" height="100" class="rounded" />
-      {props.cycle.earliestCheckInTime && (
-        <div class="text-xs font-mono space-y-0.5 text-center">
+      <canvas
+        ref={canvasRef}
+        width="100"
+        height="100"
+        class="w-[100px] h-[100px] flex-shrink-0 rounded"
+      />
+
+      <div class="text-xs font-mono space-y-0.5 pl-2">
+        <div class="text-text-tertiary">{props.cycle.hex}</div>
+        {props.cycle.earliestCheckInTime && (
           <div class="text-accent-lime font-semibold">{props.cycle.earliestCheckInTime}</div>
-          <div class="text-text-tertiary">{props.cycle.hex}</div>
-        </div>
-      )}
-      <span class="sr-only">
-        Cycle {props.cycle.hex}: {props.cycle.state}
-        {props.cycle.isWaking ? ', waking cycle' : ''}
-        {props.cycle.earliestCheckInTime ?
-          `, checked in at ${props.cycle.earliestCheckInTime}`
-        : ''}
-      </span>
+        )}
+      </div>
     </div>
   )
 }
@@ -68,7 +66,11 @@ export function CycleStrip(props: CycleStripProps) {
   const wakingCycles = () => props.cycles.filter((cycle) => cycle.isWaking)
 
   return (
-    <div role="list" aria-label="Daily cycle visualization" class="flex gap-4">
+    <div
+      role="list"
+      aria-label="Daily cycle visualization"
+      class="flex flex-col lg:flex-row gap-4 justify-between"
+    >
       <For each={wakingCycles()}>{(cycle) => <CycleGrid cycle={cycle} />}</For>
     </div>
   )

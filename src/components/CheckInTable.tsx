@@ -15,7 +15,7 @@ export function CheckInTable(props: CheckInTableProps) {
       day: 'numeric',
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true,
+      hour12: false,
     })
   }
 
@@ -29,23 +29,23 @@ export function CheckInTable(props: CheckInTableProps) {
     <div class="overflow-x-auto">
       <table class="w-full border-collapse">
         <thead>
-          <tr class="border-b border-slate-700">
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+          <tr class="border-b border-neutral-700">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Time
             </th>
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Cycle
             </th>
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Now
             </th>
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Focus
             </th>
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Soul
             </th>
-            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-slate-400">
+            <th class="px-4 py-3 text-left text-sm font-semibold uppercase tracking-wider text-neutral-400">
               Prep
             </th>
           </tr>
@@ -53,14 +53,14 @@ export function CheckInTable(props: CheckInTableProps) {
         <tbody>
           {props.checkIns.length === 0 ?
             <tr>
-              <td colspan="6" class="px-4 py-8 text-center text-slate-500">
+              <td colspan="6" class="px-4 py-8 text-center text-neutral-500">
                 No check-ins yet today
               </td>
             </tr>
           : <For each={props.checkIns}>
               {(checkIn) => (
-                <tr class="border-b border-slate-800 transition-colors hover:bg-slate-900">
-                  <td class="px-4 py-3 text-sm text-slate-300">
+                <tr class="border-b border-neutral-800 transition-colors hover:bg-neutral-900">
+                  <td class="px-4 py-3 text-sm text-neutral-300">
                     {formatDateTime(checkIn.checked_at)}
                   </td>
                   <td class="px-4 py-3 text-sm">
@@ -68,21 +68,21 @@ export function CheckInTable(props: CheckInTableProps) {
                       {getCycleHex(checkIn.checked_at)}
                     </span>
                   </td>
-                  <td class="px-4 py-3 text-sm text-slate-200">{checkIn.now}</td>
+                  <td class="px-4 py-3 text-sm text-neutral-200">{checkIn.now}</td>
                   <td class="px-4 py-3 text-sm">
                     <span
                       class="rounded-full px-2 py-1 text-xs font-medium"
                       classList={{
                         'bg-blue-900 text-blue-200': checkIn.focus === 'rhyt',
                         'bg-purple-900 text-purple-200': checkIn.focus === 'hyker',
-                        'bg-slate-700 text-slate-300': checkIn.focus === 'other',
+                        'bg-neutral-700 text-neutral-300': checkIn.focus === 'other',
                       }}
                     >
                       {checkIn.focus}
                     </span>
                   </td>
-                  <td class="px-4 py-3 text-sm text-slate-300">{checkIn.soul}</td>
-                  <td class="px-4 py-3 text-sm text-slate-300">{checkIn.prep}</td>
+                  <td class="px-4 py-3 text-sm text-neutral-300">{checkIn.soul}</td>
+                  <td class="px-4 py-3 text-sm text-neutral-300">{checkIn.prep}</td>
                 </tr>
               )}
             </For>
