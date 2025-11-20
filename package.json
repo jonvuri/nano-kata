@@ -3,8 +3,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier src --write",
-    "lint": "eslint --cache",
-    "lint:fix": "eslint --fix --cache",
+    "lint": "eslint --fix --cache",
     "typecheck": "tsc --noEmit",
     "test:run": "vitest run",
     "dev": "vinxi dev",
