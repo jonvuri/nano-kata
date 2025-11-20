@@ -20,7 +20,8 @@ function CycleGrid(props: CycleGridProps) {
 
     // Select config based on cycle state
     const config = CYCLE_CONFIGS[props.cycle.state]
-    const renderer = createPointGridRenderer(canvasRef, config)
+    const truncate = props.cycle.state !== 'checked'
+    const renderer = createPointGridRenderer(canvasRef, config, truncate)
 
     // Main loop
     function loop() {

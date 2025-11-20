@@ -34,6 +34,7 @@ const DEFAULT_CONSTANTS: PointGridConstants = {
 export function createPointGridRenderer(
   canvas: HTMLCanvasElement,
   config: PointGridConfig,
+  truncate: boolean = false,
   constants: PointGridConstants = DEFAULT_CONSTANTS,
 ) {
   const randomSeed = Math.floor(Math.random() * 1000000)
@@ -104,6 +105,9 @@ export function createPointGridRenderer(
         // Skip the first row so we have some vertical room for Y shifting
         // FIXME: do smarter row calculation upfront
         if (y == 0) continue
+
+        // If truncate is enabled, only render the last (bottommost) row
+        if (truncate && y !== POINT_ROWS - 1) continue
 
         let col: string
         let s: number
